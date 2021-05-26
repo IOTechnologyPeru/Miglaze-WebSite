@@ -31,17 +31,17 @@ export const useProductData = () => {
 
 export const insertProduct = (data) => {
   const { products, setProducts } = useContext(Context);
-  window
-    .fetch('https://miglaze-api.herokuapp.com/api/product', {
+  
+    fetch('https://miglaze-api.herokuapp.com/api/product', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
-    .then(function (response) {
-      console.log('response =', response);
+    .then( response=> {
+      console.log({response});
       return response.json();
     })
     .then(function (data) {

@@ -53,7 +53,7 @@ export default () => {
           </thead>
           <tbody>
             {products.map((product, index) => (
-              <Trx key={index}>
+              <Trx key={product.id}>
                 <Th scope='row'>{product.id}</Th>
                 <Th>{product.name}</Th>
                 <Th>{brands[product.product_brand_id - 1]?.name}</Th>

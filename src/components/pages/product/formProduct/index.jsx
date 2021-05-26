@@ -22,7 +22,22 @@ export default ({ _handleCreate }) => {
   const { categories } = useCategoryData();
   const { brands } = useBrandData();
   const onSubmit = (d) => {
-    insertProduct(d);
+    _handleCreate();
+    
+    fetch('https://miglaze-api.herokuapp.com/api/product', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(d),
+    })
+    .then( response=> {
+      console.log({response});
+      return response.json();
+    })
+    
+    
   };
 
   return ReactDOM.createPortal(
@@ -39,7 +54,7 @@ export default ({ _handleCreate }) => {
           <LabelField>Tipo de producto</LabelField>
           <Select {...register('type')}>
             {categories.map((category) => (
-              <option value={category.id}>{category.name}</option>
+              <option key={category.id} value={category.id}>{category.name}</option>
             ))}
           </Select>
         </BoxField>
@@ -47,7 +62,7 @@ export default ({ _handleCreate }) => {
           <LabelField>Marcas</LabelField>
           <Select {...register('brand')}>
             {brands.map((brand) => (
-              <option value={brand.id}>{brand.name}</option>
+              <option key={brand.id} value={brand.id}>{brand.name}</option>
             ))}
           </Select>
         </BoxField>
