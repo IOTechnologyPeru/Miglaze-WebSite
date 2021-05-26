@@ -16,3 +16,8 @@ export const NombreEmpresa = styled.h2`
 export const RolUsuario = styled.h3`
   margin-right: 5%;
 `;
+
+export const Img = styled.img`
+  margin-left: 50px;
+  width: 250px;
+`;

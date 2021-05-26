@@ -1,26 +1,53 @@
 import { useEffect, useState } from 'react';
+import { Context } from '@src/Context';
+import { useContext } from 'react';
 
 export const useProductData = () => {
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useContext(Context);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(function () {
-    setLoading(true);
+    if (products.length === 0) {
+      setLoading(true);
 
-    window
-      .fetch('https://miglaze-api.herokuapp.com/api/product')
-      .then((res) => res.json())
-      .then((products) => {
-        setProducts(products);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      window
+        .fetch('https://miglaze-api.herokuapp.com/api/product')
+        .then((res) => res.json())
+        .then((products) => {
+          setProducts(products);
+        })
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, []);
 
   return { error, loading, products };
+};
+
+export const insertProduct = (data) => {
+  const { products, setProducts } = useContext(Context);
+  window
+    .fetch('https://miglaze-api.herokuapp.com/api/product', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(function (response) {
+      console.log('response =', response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log('data = ', data);
+    })
+    .catch(function (err) {
+      console.error(err);
+    });
 };

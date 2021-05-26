@@ -1,11 +1,12 @@
 import React from 'react';
-import { Aside, NombreEmpresa, RolUsuario } from './styles';
+import { Aside, NombreEmpresa, RolUsuario, Img } from './styles';
+import LogoText from '@img/LogoText.svg';
 
 export default () => {
   return (
     <>
       <Aside>
-        <NombreEmpresa>Miglaze</NombreEmpresa>
+        <Img src={LogoText}></Img>
         <RolUsuario>Administrador</RolUsuario>
       </Aside>
     </>

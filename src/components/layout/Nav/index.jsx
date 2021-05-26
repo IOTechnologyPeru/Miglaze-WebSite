@@ -12,13 +12,14 @@ import Logo from '@img/Logo.png';
 import Producto from '@img/producto.png';
 import Ventas from '@img/ventas.png';
 import Personal from '@img/personal.png';
+import LogoText from '@img/LogoText.svg';
 
 export default () => {
   return (
     <>
       <Nav>
         <div>
-          <img src='#' alt='Photo User' />
+          <img src='' alt='Photo User' />
           <p>Marco Atencio</p>
         </div>
         <Options>

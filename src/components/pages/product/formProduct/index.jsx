@@ -12,6 +12,7 @@ import {
   ButtonSubmit,
   Select,
 } from './styles.js';
+import { insertProduct } from '@src/hooks/useProductData';
 import { useCategoryData } from '@src/hooks/useCategoryData';
 import { useBrandData } from '@src/hooks/useBrandData';
 import { useForm } from 'react-hook-form';
@@ -21,7 +22,7 @@ export default ({ _handleCreate }) => {
   const { categories } = useCategoryData();
   const { brands } = useBrandData();
   const onSubmit = (d) => {
-    alert(JSON.stringify(d));
+    insertProduct(d);
   };
 
   return ReactDOM.createPortal(
@@ -56,7 +57,7 @@ export default ({ _handleCreate }) => {
         </BoxField>
         <BoxField>
           <LabelField>Description</LabelField>
-          <textarea {...register('description')} />
+          <textarea />
         </BoxField>
         <BoxField>
           <LabelField>Stock</LabelField>

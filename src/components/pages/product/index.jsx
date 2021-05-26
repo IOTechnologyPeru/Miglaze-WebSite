@@ -19,9 +19,9 @@ import { useBrandData } from '@src/hooks/useBrandData';
 
 export default () => {
   const [isCreate, setCreate] = useState(false);
-  const { products } = useProductData();
-  const { categories } = useCategoryData();
-  const { brands } = useBrandData();
+  const { products = [] } = useProductData();
+  const { categories = [] } = useCategoryData();
+  const { brands = [] } = useBrandData();
 
   const handleCreate = () => {
     setCreate(!isCreate);
